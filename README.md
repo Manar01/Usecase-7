@@ -1,5 +1,5 @@
 # Usecase-7
-# Player Market Value Prediction
+# Player Market Value Prediction - Machine Learning Project
 
 ## Introduction
 
@@ -13,13 +13,19 @@ Understanding a player's market value is crucial in football, affecting transfer
 - Ensure models are validated and generalizable.
 
 ## Dataset Overview
+- **Data Source:** Cleaned player data with attributes such as age, position, performance stats, and market value.
+- **Features:** Player statistics, club details, and past performance.
+- **Target Variables:**
+  - **Regression:** Predict **market value (€)**.
+  - **Classification:** Categorize players into **market value tiers**.
+  - **Clustering:** Group players into **similar categories**.
 
-The dataset includes multiple features related to football players, such as:
-- **Player Attributes:** Name, team, position, height, weight, age.
-- **Performance Metrics:** Goals, assists, appearances, clean sheets, dribbling ability, passing accuracy.
-- **Financial Features:** Contract length, salary, bonuses.
+## 🛠 Methodology
 
-## Exploratory Data Analysis (EDA)
+### **1️. Exploratory Data Analysis (EDA)**
+✔ Checked missing values, duplicates, and feature correlations.  
+✔ Visualized numerical & categorical distributions.  
+✔ Detected outliers using boxplots and histograms.
 
 1. **Data Viewing and Profiling:**
    - Checked dataset structure, column names, and data types.
@@ -48,7 +54,7 @@ The dataset includes multiple features related to football players, such as:
    - Applied IQR filtering to remove extreme outliers in market value.
    - Used boxplots to detect anomalies in salary, goals, and other features.
 
-## Machine Learning Modeling
+## 2. Machine Learning Models
 
 ### **Regression Models**
 1. **Feature Engineering:**
@@ -74,12 +80,16 @@ The dataset includes multiple features related to football players, such as:
 5. **Validation & Overfitting Check:**
    - Compared training and test set performance to ensure generalization.
    - Analyzed residuals to check for normal distribution and errors.
+**Best Model:** Ridge Regression (Balanced bias-variance tradeoff)  
+
 
 ### **Classification Models**
 1. **Model Selection:**
    - **Logistic Regression:** Used to classify players into different market value categories.
    - **Decision Trees:** Used to capture complex relationships in player attributes.
    - **Random Forest:** Applied ensemble learning for better predictive accuracy.
+   - **SVM**
+   - **KNN** 
 
 2. **Performance Metrics:**
    - Used **Accuracy, Precision, Recall, F1-score, and Confusion Matrix** for model evaluation.
@@ -89,9 +99,36 @@ The dataset includes multiple features related to football players, such as:
    - Applied **cross-validation** to ensure models generalize well.
    - Compared training and test performance to detect overfitting.
 
-## Model Deployment (Optional)
-- **Saved best-performing models using `.pkl` and `.joblib` formats** for future use.
-- **Generated a dataset download link** since GitHub does not support large files.
+**Best Model:** **SVM with RBF Kernel** (Highest accuracy)
+
+
+### **Unsupervised Modeling**
+
+**K-Means Clustering**
+- Identified **optimal k using Elbow Method & Silhouette Score**  
+- Clustered players into meaningful groups (Elite, Young Talents, etc.)  
+- Compared clusters based on attributes & market value  
+
+**Best k:** **7 Clusters** (Interpreted as different player categories)
+
+
+## **Model Comparison**
+| Model                | Metric            | Score  |
+|----------------------|------------------|--------|
+| **Regression (Ridge)**   | R² Score  | **0.82** |
+| **Classification (SVM)** | Accuracy  | **87.5%** |
+| **Clustering (K-Means)** | Silhouette Score | **0.65** |
+
+---
+
+## How to Run the Project
+1️ Install dependencies:  
+```bash
+pip install -r requirements.txt
+2️ Run EDA Notebook to explore data.
+3️ Train models using Regression & Classification Notebooks.
+4️ Analyze clusters using Unsupervised Learning Notebook.
+5️ Use the Final Report Notebook for insights.
 
 ## Key Insights
 
@@ -104,8 +141,3 @@ The dataset includes multiple features related to football players, such as:
 ## Conclusion
 
 This project provides insights into how different attributes influence a player's market value. By combining EDA with machine learning, we built predictive models that estimate a player's worth. Future improvements can include incorporating external data like contract details, club reputation, and league performance for better accuracy.
-
-## How to Run the Project
-1. **Install necessary libraries**:
-   ```sh
-   pip install -r requirements.txt
